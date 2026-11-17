@@ -34,7 +34,7 @@ pub struct Channel {
     pub pub_date: Option<String>,
     pub last_build_date: Option<String>,
     pub category: Option<String>,
-    #[serde(rename = "itunes:category")]
+    #[serde(rename = "itunes:category", default)]
     pub itunes_categories: Vec<ITunesCategory>,
     pub generator: Option<String>,
     pub docs: Option<Url>,
@@ -78,7 +78,7 @@ pub struct ITunesCategory {
     #[serde(rename = "@text")]
     pub text: String,
     #[serde(rename = "itunes:category")]
-    pub subcategory: ITunesSubCategory,
+    pub subcategory: Option<ITunesSubCategory>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Deref, DerefMut)]
