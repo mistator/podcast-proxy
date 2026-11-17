@@ -26,11 +26,17 @@ struct Settings {
 #[derive(Deserialize)]
 struct Qry {
     q: Url,
+    list: Option<String>,
 }
 
 #[get("/")]
-async fn home(data: web::Data<AppState>, settings: web::Data<Settings>, query: web::Query<Qry>) -> actix_web::Result<impl Responder> {
-    let url = &query.q;
+async fn home(data: web::Data<AppState>, settings: web::Data<Settings>, mut query: web::Query<Qry>) -> actix_web::Result<impl Responder> {
+    let list = query.list.take();
+    let url = &mut query.q;
+
+    if let Some(list) = list {
+        url.query_pairs_mut().append_pair("list", list.as_str());
+    }
 
     let feed = match url.domain() {
         Some("www.ivoox.com") => Ivoox
