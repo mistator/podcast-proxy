@@ -7,12 +7,13 @@ edition = "2024"
 actix-web = "4.19.0"
 actix-files = "0.7.4"
 env_logger = "0.11.11"
+log = "0.4.35"
 directories = "6.0.0"
-reqwest = { version = "0.13.5", features = ["default", "blocking"] }
+reqwest = { version = "0.13.5", features = ["default", "blocking", "rustls", "hickory-dns"] }
 derive_more = { version = "2.1.1", features = ["full"] }
 url = { version = "2.5.8", features = ["serde"] }
 regex = "1.13.1"
 serde = { version = "1.0.229", features = ["derive"] }
 serde-xml-rs = "0.8.2"
 anyhow = "1.0.104"
-yt-dlp = "2.10.0"
+yt-dlp = { version = "2.10.0", features = ["rustls", "hickory-dns"] }

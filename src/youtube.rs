@@ -87,8 +87,10 @@ pub struct YouTube(Downloader);
 
 impl YouTube {
     pub async fn new() -> anyhow::Result<Self> {
+        log::debug!("[YT-new] creating YT instance");
         if let Some(dir) = ProjectDirs::from("", "", "feed") {
             let dir = dir.cache_dir();
+            log::debug!("[YT-new] found cache dir: {:?}", dir);
 
             let libraries_dir = dir.join("libraries");
             let output_dir = dir.join("output");
@@ -96,6 +98,7 @@ impl YouTube {
             fs::create_dir_all(&libraries_dir)?;
             fs::create_dir_all(&output_dir)?;
 
+            log::debug!("[YT-new] downloading binaries for yt-dlp");
             let downloader = Downloader::with_new_binaries(libraries_dir, output_dir)
                 .await?
                 .build()
