@@ -158,7 +158,7 @@ impl Grabber for YouTube {
                 text_input: None,
                 skip_hours: vec![],
                 items: feed.items.into_iter().map(|item| {
-                    let url = Url::parse(format!("{}/item/youtube/{}", public_url.to_string(), item.video_id).as_str())
+                    let url = Url::parse(format!("{}item/youtube/{}", public_url.to_string(), item.video_id).as_str())
                         .unwrap();
 
                     Item {

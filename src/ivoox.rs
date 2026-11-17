@@ -32,7 +32,7 @@ impl Grabber for Ivoox {
             let enclosure = item.enclosure.as_mut().ok_or(anyhow!("missing enclosure for item"))?;
 
             enclosure.url = 
-                Url::parse(format!("{}/item/ivoox/{}", public_url.to_string(), id).as_str())
+                Url::parse(format!("{}item/ivoox/{}", public_url.to_string(), id).as_str())
                     .map_err(anyhow::Error::from)?;
         }
 
